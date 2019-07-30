@@ -1,0 +1,14 @@
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\bin\Debug\netcoreapp2.2\Identificador.API.deps.json
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\bin\Debug\netcoreapp2.2\Identificador.API.runtimeconfig.json
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\bin\Debug\netcoreapp2.2\Identificador.API.runtimeconfig.dev.json
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\bin\Debug\netcoreapp2.2\Identificador.API.dll
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\bin\Debug\netcoreapp2.2\Identificador.API.pdb
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\obj\Debug\netcoreapp2.2\Identificador.API.csprojAssemblyReference.cache
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\obj\Debug\netcoreapp2.2\Identificador.API.csproj.CoreCompileInputs.cache
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\obj\Debug\netcoreapp2.2\Identificador.API.RazorAssemblyInfo.cache
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\obj\Debug\netcoreapp2.2\Identificador.API.RazorAssemblyInfo.cs
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\obj\Debug\netcoreapp2.2\Identificador.API.AssemblyInfoInputs.cache
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\obj\Debug\netcoreapp2.2\Identificador.API.AssemblyInfo.cs
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\obj\Debug\netcoreapp2.2\Identificador.API.RazorTargetAssemblyInfo.cache
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\obj\Debug\netcoreapp2.2\Identificador.API.dll
+E:\vhpri\Documents\Github\Identificador\Identificador\src\Identificador.API\obj\Debug\netcoreapp2.2\Identificador.API.pdb
