@@ -330,3 +330,7 @@ ASALocalRun/
 .mfractor/
 
 \.vs/
+
+src/Identificador\.API/bin/
+
+src/Identificador\.API/obj/

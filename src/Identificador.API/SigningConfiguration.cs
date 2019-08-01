@@ -1,5 +1,5 @@
-﻿using System.Security.Cryptography;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Identificador.API
 {
@@ -10,13 +10,8 @@ namespace Identificador.API
 
         public SigningConfigurations()
         {
-            using (var provider = new RSACryptoServiceProvider(2048))
-            {
-                Key = new RsaSecurityKey(provider.ExportParameters(true));
-            }
-
-            SigningCredentials = new SigningCredentials(
-                Key, SecurityAlgorithms.RsaSha256Signature);
+            Key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("secrekeysecrekeysecrekey"));
+            SigningCredentials = new SigningCredentials(Key, SecurityAlgorithms.HmacSha256Signature);
         }
     }
 }

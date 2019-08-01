@@ -61,7 +61,7 @@ namespace Identificador.API.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public object LongIn([FromBody]User user)
+        public object LogIn([FromBody]User user)
         {
             bool validCredentials = false;
             if (user != null && !String.IsNullOrWhiteSpace(user.UserID))
