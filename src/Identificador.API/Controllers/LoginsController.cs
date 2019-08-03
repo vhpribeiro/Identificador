@@ -33,14 +33,14 @@ namespace Identificador.API.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [Route("adminUser")]
-        public async Task<OkResult> RegisterAdmin([FromBody]User user)
+        [Route("user")]
+        public async Task<OkResult> Register([FromBody]User user)
         {
             var userApplication = new ApplicationUser {UserName = user.UserID, Email = user.Email};
             var result = await _userManager.CreateAsync(userApplication, user.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(userApplication, "Admin");
+                await _userManager.AddToRoleAsync(userApplication, Roles.ROLE_USER);
                 return Ok();
             }
             throw new Exception("Can't create the user");
@@ -48,22 +48,9 @@ namespace Identificador.API.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [Route("adminRole")]
-        public async Task<OkResult> RegisterRoleAdmin()
+        [Route("adminUser")]
+        public async Task<OkResult> RegisterAdmin([FromBody]User user)
         {
-            var result = _roleManager.CreateAsync(new IdentityRole(Roles.ROLE_ADMIN)).Result;
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-            throw new Exception("Can't create the user");
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        public object LogIn([FromBody]User user)
-        {
-            bool validCredentials = false;
             if (user != null && !String.IsNullOrWhiteSpace(user.UserID))
             {
                 var userIdentity = _userManager
@@ -75,8 +62,33 @@ namespace Identificador.API.Controllers
                         .Result;
                     if (loginResult.Succeeded)
                     {
+                        await _userManager.AddToRoleAsync(userIdentity, Roles.ROLE_ADMIN);
+                        return Ok();
+                    }
+                }
+            }
+            throw new Exception("Can't create the user");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<object> LogIn([FromBody]User user)
+        {
+            bool validCredentials = false;
+            var userIdentity = new ApplicationUser();
+            if (user != null && !string.IsNullOrWhiteSpace(user.UserID))
+            {
+                userIdentity = _userManager
+                    .FindByNameAsync(user.UserID).Result;
+                if (userIdentity != null)
+                {
+                    var loginResult = _signInManager
+                        .CheckPasswordSignInAsync(userIdentity, user.Password, false)
+                        .Result;
+                    if (loginResult.Succeeded)
+                    {
                         validCredentials = _userManager.IsInRoleAsync(
-                            userIdentity, Roles.ROLE_ADMIN).Result;
+                            userIdentity, Roles.ROLE_USER).Result;
                     }
                 }
             }
@@ -90,6 +102,11 @@ namespace Identificador.API.Controllers
                         new Claim(JwtRegisteredClaimNames.UniqueName, user.UserID)
                     }
                 );
+                var roles = await _userManager.GetRolesAsync(userIdentity);
+                foreach (var role in roles)
+                {
+                    identity.AddClaim(new Claim(ClaimTypes.Role, role));
+                }
 
                 DateTime createDate = DateTime.Now;
                 DateTime expirationDate = createDate +
@@ -121,7 +138,7 @@ namespace Identificador.API.Controllers
                 return new
                 {
                     authenticated = false,
-                    message = "Falha ao autenticar"
+                    message = "Not authenticating"
                 };
             }
         }
